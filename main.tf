@@ -30,7 +30,7 @@ resource "proxmox_vm_qemu" "radarr" {
             disk {
                 storage = "local-lvm"
                 size    = 10
-                iothread = 1
+                iothread = true
             }
         }
     }

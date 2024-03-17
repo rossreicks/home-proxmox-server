@@ -1,0 +1,25 @@
+name: 'Deploy'
+
+on:
+    push:
+        branches:
+            - main
+
+env:
+    PM_USER: ${{ secrets.PM_USER }}
+    PM_PASS: ${{ secrets.PM_PASS }}
+
+jobs:
+    tf-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: hashicorp/setup-terraform@v3
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Terraform Init
+              run: terraform init
+            - name: Terraform Plan
+              run: terraform plan
+            - name: Terraform Apply
+              run: terraform apply -auto-approve
+

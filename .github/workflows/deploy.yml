@@ -5,13 +5,12 @@ on:
         branches:
             - main
 
-env:
-    PM_USER: ${{ secrets.PM_USER }}
-    PM_PASS: ${{ secrets.PM_PASS }}
-
 jobs:
     tf-deploy:
         runs-on: ubuntu-latest
+        env:
+            PM_USER: ${{ secrets.PM_USER }}
+            PM_PASS: ${{ secrets.PM_PASS }}
         steps:
             - uses: hashicorp/setup-terraform@v3
             - name: Checkout code
